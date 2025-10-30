@@ -53,3 +53,14 @@ resource "aws_instance" "staging" {
     Name = "Staging_Env"
   }
 }
+
+resource "aws_instance" "permanent_agent" {
+  ami             = "ami-0440d3b780d96b29d"
+  instance_type   = "t3.medium"
+  subnet_id     = aws_subnet.main_b.id
+  security_groups = [aws_security_group.web_sg.id]
+  key_name        = var.key_name
+  tags = {
+    Name = "Permanent_Agent"
+  }
+}
