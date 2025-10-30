@@ -60,6 +60,7 @@ resource "aws_instance" "permanent_agent" {
   subnet_id     = aws_subnet.main_b.id
   security_groups = [aws_security_group.web_sg.id]
   key_name        = var.key_name
+  user_data       = file("scripts/permanent_agent_setup.sh")
   tags = {
     Name = "Permanent_Agent"
   }
